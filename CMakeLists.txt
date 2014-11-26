@@ -13,7 +13,7 @@ set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Werror -O3 -std=gnu99")
 #########
 # Vous devez editer la ligne suivante pour y mettre votre login
 #########
-set(LOGINS login)
+set(LOGINS login1)
 list(SORT LOGINS)
 
 if (LOGINS MATCHES "login1")
@@ -35,12 +35,17 @@ find_library(MISC_LIBRARY NAMES m libm rt librt)
 ##
 add_executable(ensisepc src/main.c  src/prodconso.c)
 target_link_libraries(ensisepc ${CMAKE_THREAD_LIBS_INIT} m rt)
+add_executable(validateur tests/validateur.c)
+
 
 ##
 # Programme de test
 ##
-add_test(Tests ../tests/validite.pl)
-add_custom_target(check ../tests/validite.pl)
+add_test(TestSimple ../tests/validite.pl 0)
+add_test(TestMemoire ../tests/validite.pl 1)
+add_test(TestThread1 ../tests/validite.pl 2)
+add_test(TestThread2 ../tests/validite.pl 3)
+add_custom_target(check ../tests/validite.pl 0)
 
 ##
 # Construction de l'archive (inutile ?)
