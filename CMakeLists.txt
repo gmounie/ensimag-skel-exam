@@ -41,10 +41,10 @@ add_executable(validateur tests/validateur.c)
 ##
 # Programme de test
 ##
-add_test(TestSimple ../tests/validite.pl 0)
-add_test(TestMemoire ../tests/validite.pl 1)
-add_test(TestThread1 ../tests/validite.pl 2)
-add_test(TestThread2 ../tests/validite.pl 3)
+add_test(TestNoValgrind ../tests/validite.pl 0)
+add_test(TestValgrindMemcheck ../tests/validite.pl 1)
+add_test(TestValgrindHelgrind ../tests/validite.pl 2)
+add_test(TestValgrindDrd ../tests/validite.pl 3)
 add_custom_target(check ../tests/validite.pl 0)
 
 ##

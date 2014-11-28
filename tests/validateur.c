@@ -10,19 +10,20 @@ unsigned int graines[NBTHREADS] = {0, 1, 2, 3};
 void init_sequence(void) {
   for(int i=0; i < NBLOOPS; i++) {
     for(int j=0; j < NBTHREADS; j++) {
-      sequence[j][i] = rand_r( & graines[i] );
+      sequence[j][i] = rand_r( & graines[j] );
     }
   }
 }
 
 
 int main(int argc, char **argv) {
-  int indices[4] = {};
+  int indices[NBTHREADS] = {};
 
   init_sequence();
 
-  for (int i=0; i <= NBLOOPS * NBTHREADS; i++) {
-    int val=0;
+  int val=0;
+  for (int i=0; i < NBLOOPS * NBTHREADS; i++) {
+    val = 0;
     scanf("## %d\n", &val);
 
     for(int j = 0; j < 4; j++) {
@@ -37,6 +38,13 @@ int main(int argc, char **argv) {
     for(int i=0; i < 4; i++)
       fprintf(stderr, "%d ", indices[i]);
     fprintf(stderr, ")\n");
+
+    fprintf(stderr, "dernière valeur lue: %d\n", val);
+    fprintf(stderr, "valeur attendue parmi : ( ");
+    for(int i=0; i < 4; i++)
+      fprintf(stderr, "%d ", sequence[i] [ indices[i] ]);
+    fprintf(stderr, ")\n");
+
     exit(-1);
 
   suivant:

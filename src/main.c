@@ -3,12 +3,12 @@
 
 void *threadA(void *arg) {
   /*
-    gestion de la graine de randr_r à changer !!!
+    Les 4 threads auront respectivement {0,1,2,3} comme graine initiale
    */
-  unsigned int graine = 0;
+  unsigned int graine = ...;
 
   for(int i=0; i< 1000; i++) {
-    deposer(rand_r(& graine));
+    deposer( rand_r(& graine) );
   }
   /* */
   return 0;
